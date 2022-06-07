@@ -1,5 +1,4 @@
 version: 0.2
-      
   pre_build:
     commands:
      - Logging in to Amazon ECR.....
