@@ -4,11 +4,10 @@ phases:
   install:
     runtime-versions:
       docker: 20
-  install:
+  
   pre_build:
     commands:
-     - Logging in to Amazon ECR.....
-     - apt install awscli
+     - Logging in to Amazon ECR....
     - $(aws ecr get-login --no-include-email --region us-east-1)
     - REPOSITORY_URI=public.ecr.aws/v8p9f0s1/nodejsapp:latest
 
