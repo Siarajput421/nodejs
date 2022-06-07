@@ -1,23 +1,26 @@
 version: 0.2
 
 phases:
-  install:
-    runtime-versions:
-      nodejs: 10
-      
-  pre_build:
-    commands:
-      - echo Installing source NPM dependencies...
-      
-  build:
-    commands:
-      - echo Build started on `date`
-      - echo Compiling the Node.js code
-      
-  post_build:
-    commands:
-      - echo Build completed on `date
-      `
-artifacts:
-  files:
-    - '**/*'
+
+pre_build:
+
+commands:
+  - echo Logging in to Amazon ECR.....
+  - aws --version
+  - $(aws ecr get-login --no-include-email --region us-east-1)
+  - REPOSITORY_URI=989066xxxxxx.dkr.ecr.us-east-1.amazonaws.com/ecs-cicd-nginx
+  - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+build:
+
+commands:
+  - echo Build started on `date`
+  - echo Building the Docker image...
+  - docker build -t $REPOSITORY_URI:$IMAGE_TAG .
+post_build:
+
+commands:
+  - echo Build completed on `date`
+  - echo Pushing the Docker images...
+  - docker push $REPOSITORY_URI:$IMAGE_TAG
+  - echo Writing image definitions file...
+  - printf '[{"name":"ecs-cicd-nginx","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
