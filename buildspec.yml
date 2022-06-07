@@ -8,7 +8,7 @@ commands:
   - echo Logging in to Amazon ECR.....
   - aws --version
   - $(aws ecr get-login --no-include-email --region us-east-1)
-  - REPOSITORY_URI=989066xxxxxx.dkr.ecr.us-east-1.amazonaws.com/ecs-cicd-nginx
+  - REPOSITORY_URI=public.ecr.aws/v8p9f0s1/nodejsapp:latest
   - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
 build:
 
