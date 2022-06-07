@@ -1,4 +1,6 @@
-version: 2.2.12
+version: 0.2
+ 
+  install:
   pre_build:
     commands:
      - Logging in to Amazon ECR.....
