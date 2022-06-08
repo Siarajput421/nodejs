@@ -6,7 +6,7 @@ phases:
       - echo Logging in to Amazon ECR.....
       - aws --version
       - apt install docker.io
-      - aws ecr get-login --no-include-email --region us-east -1
+      #- aws ecr get-login --no-include-email --region us-east -1
       - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/v8p9f0s1
       
   
