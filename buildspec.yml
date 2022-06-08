@@ -14,7 +14,7 @@ phases:
     commands:
       - echo Build started on `date`
       - sudo docker build -t nodejsapp .
-      - sudo docker tag nodejsapp:latest public.ecr.aws/v8p9f0s1/nodejsapp:latest
+     # - sudo docker tag nodejsapp:latest public.ecr.aws/v8p9f0s1/nodejsapp:latest
 
   post_build:
     commands:
