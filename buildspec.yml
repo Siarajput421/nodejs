@@ -1,26 +1,27 @@
 version: 0.2
 
+
 phases:
   pre_build:
     commands:
-      - echo Logging in to Amazon ECR.....
+      - echo Logging in to Amazon ECR...
       - aws --version
-      #- apt install docker.io
-      #- aws ecr get-login --no-include-email --region us-east -1
-     # - sudo aws ecr get-login --no-include-email --region us-east -1 | sudo docker login --username AWS --password-stdin public.ecr.aws/v8p9f0s1
-      - systemctl start docker
-  
+      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+      - REPOSITORY_URI=public.ecr.aws/v8p9f0s1/nodejsapp:latest
+     
   build:
     commands:
       - echo Build started on `date`
-      - sudo docker build -t nodejsapp .
-      - sudo docker tag nodejsapp:latest public.ecr.aws/v8p9f0s1/nodejsapp:latest
-
+      - echo Building the Docker image...
+      - docker build -t $REPOSITORY_URI:latest .
+      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
-      - sudo docker push public.ecr.aws/v8p9f0s1/nodejsapp:latest
+      - docker push $REPOSITORY_URI:latest
+     
+      
 artifacts:
   files:
     - '**/*'
