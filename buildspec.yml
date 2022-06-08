@@ -7,17 +7,20 @@ phases:
       - aws --version
       #- apt install docker.io
       #- aws ecr get-login --no-include-email --region us-east -1
-      - aws ecr get-login --no-include-email --region us-east -1 | docker login --username AWS --password-stdin public.ecr.aws/v8p9f0s1
+      - sudo aws ecr get-login --no-include-email --region us-east -1 | sudo docker login --username AWS --password-stdin public.ecr.aws/v8p9f0s1
       
   
   build:
     commands:
       - echo Build started on `date`
-      - docker build -t nodejsapp .
-      - docker tag nodejsapp:latest public.ecr.aws/v8p9f0s1/nodejsapp:latest
+      - sudo docker build -t nodejsapp .
+      - sudo docker tag nodejsapp:latest public.ecr.aws/v8p9f0s1/nodejsapp:latest
 
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
-      - docker push public.ecr.aws/v8p9f0s1/nodejsapp:latest
+      - sudo docker push public.ecr.aws/v8p9f0s1/nodejsapp:latest
+artifacts:
+  files:
+    - '**/*'
