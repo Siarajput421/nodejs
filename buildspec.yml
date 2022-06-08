@@ -6,7 +6,7 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - aws --version
-      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+      #- $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
       - REPOSITORY_URI=public.ecr.aws/v8p9f0s1/nodejsapp:latest
       - aws ecr-public get-login --region us-east-1 --no-include-email | docker login --username AWS --password-stdin public.ecr.aws/v8p9f0s1
      
