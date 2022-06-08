@@ -19,7 +19,7 @@ phases:
     commands:
       - echo Build completed on `date`
       - docker tag nodejsapp:latest public.ecr.aws/v8p9f0s1/nodejsapp:latest
-      - docker push public.ecr.aws/v8p9f0s1/nodejsapp:latest
+      - sudo docker push public.ecr.aws/v8p9f0s1/nodejsapp:latest
      
       
 artifacts:
