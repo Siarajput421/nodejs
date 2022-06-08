@@ -7,19 +7,19 @@ phases:
       - echo Logging in to Amazon ECR...
       - aws --version
       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
-      - REPOSITORY_URI=public.ecr.aws/v8p9f0s1/nodejsapp:latest
+      #- REPOSITORY_URI=public.ecr.aws/v8p9f0s1/nodejsapp:latest
      
   build:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build -t $REPOSITORY_URI:latest .
-      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+      - docker build -t public.ecr.aws/v8p9f0s1/nodejsapp:latest .
+     
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
-      - docker push $REPOSITORY_URI:latest
+      - docker push public.ecr.aws/v8p9f0s1/nodejsapp:latest
      
       
 artifacts:
