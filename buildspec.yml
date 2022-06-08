@@ -13,13 +13,13 @@ phases:
     commands:
       - echo Build started on `date`
       - echo building the docker images...
-      - docker build -t $REPOSITORY_URI:latest .
+      - docker build -t  public.ecr.aws/v8p9f0s1/nodejsapp .
       
      
   post_build:
     commands:
       - echo Build completed on `date`
-      - docker tag ok public.ecr.aws/v8p9f0s1/nodejsapp
+     # - docker tag ok public.ecr.aws/v8p9f0s1/nodejsapp
       - docker push public.ecr.aws/v8p9f0s1/nodejsapp:latest
      
       
