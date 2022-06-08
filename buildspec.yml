@@ -12,13 +12,13 @@ phases:
   build:
     commands:
       - echo Build started on `date`
-      - docker build -t HELL .
+      - docker build -t ok .
       
      
   post_build:
     commands:
       - echo Build completed on `date`
-      - docker tag HELL public.ecr.aws/v8p9f0s1/nodejsapp
+      - docker tag ok public.ecr.aws/v8p9f0s1/nodejsapp
       - docker push public.ecr.aws/v8p9f0s1/nodejsapp:latest
      
       
