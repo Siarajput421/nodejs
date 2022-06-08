@@ -12,14 +12,14 @@ phases:
   build:
     commands:
       - echo Build started on `date`
-      - docker build -t nodejsapp .
+      - docker build -t HELL .
       
      
   post_build:
     commands:
       - echo Build completed on `date`
-      - docker tag nodejsapp:latest public.ecr.aws/v8p9f0s1/nodejsapp
-      - sudo docker push public.ecr.aws/v8p9f0s1/nodejsapp
+      - docker tag HELL public.ecr.aws/v8p9f0s1/nodejsapp
+      - docker push public.ecr.aws/v8p9f0s1/nodejsapp:latest
      
       
 artifacts:
