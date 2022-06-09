@@ -15,7 +15,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo building the docker images...
-      - docker build -t nodejsapp . o
+      - docker build -t nodejsapp . 
       
      
   post_build:
