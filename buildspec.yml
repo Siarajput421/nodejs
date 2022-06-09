@@ -21,8 +21,8 @@ phases:
   post_build:
     commands:
       - echo Build completed on `date`
-      - docker tag nodejsapp:latest public.ecr.aws/v8p9f0s1/nodejsapp:latest
-      - docker push public.ecr.aws/v8p9f0s1/nodejsapp:latest
+      - docker tag nodejsapp:latest 115717770171.dkr.ecr.us-east-1.amazonaws.com/node
+      - docker push 115717770171.dkr.ecr.us-east-1.amazonaws.com/node
       
 artifacts:
   files:
