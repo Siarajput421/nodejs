@@ -15,13 +15,13 @@ phases:
     commands:
       - echo Build started on `date`
       - echo building the docker images...
-      - docker build -t 115717770171.dkr.ecr.us-east-1.amazonaws.com/node . 
+      - docker build -t node . 
       
      
   post_build:
     commands:
       - echo Build completed on `date`
-      #- docker tag node 115717770171.dkr.ecr.us-east-1.amazonaws.com/node
+      - docker tag node 115717770171.dkr.ecr.us-east-1.amazonaws.com/node
       - docker push  115717770171.dkr.ecr.us-east-1.amazonaws.com/node
       - printf '[{"name":"node","imageUri":"%s"}]' 115717770171.dkr.ecr.us-east-1.amazonaws.com/node:latest > imagedefinitions.json
       - cat imagedefinitions.json 
