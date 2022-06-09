@@ -15,13 +15,13 @@ phases:
     commands:
       - echo Build started on `date`
       - echo building the docker images...
-      - docker build -t nodejsapp . 
+      - docker build -t 115717770171.dkr.ecr.us-east-1.amazonaws.com/node:1 . 
       
      
   post_build:
     commands:
       - echo Build completed on `date`
-      - docker tag nodejsapp:latest 115717770171.dkr.ecr.us-east-1.amazonaws.com/node:1
+      #- docker tag nodejsapp:latest 115717770171.dkr.ecr.us-east-1.amazonaws.com/node:1
       - docker push 115717770171.dkr.ecr.us-east-1.amazonaws.com/node:1
       
 artifacts:
