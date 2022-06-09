@@ -22,8 +22,8 @@ phases:
     commands:
       - echo Build completed on `date`
       #- docker tag nodejsapp:latest 115717770171.dkr.ecr.us-east-1.amazonaws.com/node:1
-      - docker push 115717770171.dkr.ecr.us-east-1.amazonaws.com/node:1
+      - printf '[{"name":"nodeapp","imageUri":"%s"}]' 115717770171.dkr.ecr.us-east-1.amazonaws.com/node:1 > imagedefinitions.json
+      - cat imagedefinitions.json 
       
 artifacts:
-  files:
-    - '**/*'
+    files: imagedefinitions.json
