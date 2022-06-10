@@ -1,0 +1,6 @@
+[
+    {
+      "name": "nodejsapp",
+      "imageUri": "public.ecr.aws/v8p9f0s1/nodejsapp:latest"
+    }
+  ]
