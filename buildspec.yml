@@ -4,9 +4,9 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      - $(aws ecr get-login --no-include-email --region us-east-1)
+      #- $(aws ecr get-login --no-include-email --region us-east-1)
       - REPOSITORY_URI=public.ecr.aws/l0i5y9n6/devtest
-     # - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/l0i5y9n6
+      - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/l0i5y9n6
   build:
     commands:
       - "echo Build started on `date`"
