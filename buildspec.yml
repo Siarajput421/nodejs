@@ -7,7 +7,7 @@ phases:
       - echo Logging in to Amazon ECR...
       - aws --version
       - set -x
-      - $(aws ecr get-login --region us-east-1 --no-include-email)
+      #- $(aws ecr get-login --region us-east-1 --no-include-email)
       - REPOSITORY_URI=public.ecr.aws/l0i5y9n6/devtest
       - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/l0i5y9n6
   build:
