@@ -5,18 +5,18 @@ phases:
   pre_build:
     commands:
       #- $(aws ecr get-login --no-include-email --region us-east-1)
-      - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/l0i5y9n6
+      - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/v8p9f0s1
   build:
     commands:
       - "echo Build started on `date`"
       - "echo Building the Docker image..."
-      - "docker build -t devtest ."
-      - "docker tag devtest:latest public.ecr.aws/l0i5y9n6/devtest:latest"
+      - "docker build -t nodejsapp ."
+      - "docker tag nodejsapp:latest public.ecr.aws/v8p9f0s1/nodejsapp:latest"
   post_build:
     commands:
       - "echo Build completed on `date`"
       - "echo Pushing the Docker image..."
-      - "docker push public.ecr.aws/l0i5y9n6/devtest:latest"
-      - printf '[{"name":"devtest","imageUri":"%s"}]' public.ecr.aws/l0i5y9n6/devtest:latest > imagedefinitions.json
+      - "docker push public.ecr.aws/v8p9f0s1/nodejsapp:latest"
+      - printf '[{"name":"nodejsapp","imageUri":"%s"}]' public.ecr.aws/v8p9f0s1/nodejsapp:latest > imagedefinitions.json
 artifacts:
   files: imagedefinitions.json
