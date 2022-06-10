@@ -1,6 +1,6 @@
 [
     {
-      "name": "nodejsapp",
-      "imageUri": "public.ecr.aws/v8p9f0s1/nodejsapp:latest"
+      "name": "devtest",
+      "imageUri": "public.ecr.aws/l0i5y9n6/devtest:latest"
     }
   ]
