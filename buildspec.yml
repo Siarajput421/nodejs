@@ -1,26 +1,22 @@
+---
 version: 0.2
-
 
 phases:
   pre_build:
     commands:
       #- $(aws ecr get-login --no-include-email --region us-east-1)
-      - REPOSITORY_URI=public.ecr.aws/l0i5y9n6/devtest
       - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/l0i5y9n6
   build:
     commands:
       - "echo Build started on `date`"
       - "echo Building the Docker image..."
-      - docker build -t devtest .
-      - docker tag devtest:latest public.ecr.aws/l0i5y9n6/devtest:latest
-     
+      - "docker build -t devtest ."
+      - "docker tag devtest:latest public.ecr.aws/l0i5y9n6/devtest:latest"
   post_build:
     commands:
       - "echo Build completed on `date`"
       - "echo Pushing the Docker image..."
-      - docker push public.ecr.aws/l0i5y9n6/devtest:latest
+      - "docker push public.ecr.aws/l0i5y9n6/devtest:latest"
       - printf '[{"name":"devtest","imageUri":"%s"}]' public.ecr.aws/l0i5y9n6/devtest:latest > imagedefinitions.json
-      - cat imagedefinitions.json 
-      
 artifacts:
-    files: imagedefinitions.json
+  files: imagedefinitions.json
