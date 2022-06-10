@@ -4,17 +4,14 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      - echo Logging in to Amazon ECR...
-      - aws --version
-      - set -x
-      #- $(aws ecr get-login --region us-east-1 --no-include-email)
+      - $(aws ecr get-login --no-include-email --region us-east-1)
       - REPOSITORY_URI=public.ecr.aws/l0i5y9n6/devtest
       - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/l0i5y9n6
   build:
     commands:
-      - echo Build started on `date`
-      - echo building the docker images...
-      - docker build -t node . 
+      - "echo Build started on `date`"
+      - "echo Building the Docker image..."
+      - "docker build -t devtest ."
       - docker tag devtest:latest public.ecr.aws/l0i5y9n6/devtest:latest
      
   post_build:
