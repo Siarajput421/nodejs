@@ -8,22 +8,22 @@ phases:
       - aws --version
       - set -x
       - $(aws ecr get-login --region us-east-1 --no-include-email)
-      - REPOSITORY_URI=115717770171.dkr.ecr.us-east-1.amazonaws.com/node
+      - REPOSITORY_URI=public.ecr.aws/v8p9f0s1/nodejsapp
       #- aws ecr-public get-login-password  --region us-east-1  | docker login --username AWS --password-stdin public.ecr.aws/v8p9f0s1
      
   build:
     commands:
       - echo Build started on `date`
       - echo building the docker images...
-      - docker build -t node . 
+      - docker build -t nodejsapp . 
       
      
   post_build:
     commands:
       - echo Build completed on `date`
-      - docker tag node 115717770171.dkr.ecr.us-east-1.amazonaws.com/node
-      - docker push  115717770171.dkr.ecr.us-east-1.amazonaws.com/node
-      - printf '[{"name":"node","imageUri":"%s"}]' 115717770171.dkr.ecr.us-east-1.amazonaws.com/node:latest > imagedefinitions.json
+      - docker tag nodejsapp:latest public.ecr.aws/v8p9f0s1/nodejsapp:latest
+      - docker push public.ecr.aws/v8p9f0s1/nodejsapp:latest
+      - printf '[{"name":"nodejsapp","imageUri":"%s"}]' public.ecr.aws/v8p9f0s1/nodejsapp:latest > imagedefinitions.json
       - cat imagedefinitions.json 
       
 artifacts:
