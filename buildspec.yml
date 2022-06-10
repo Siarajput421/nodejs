@@ -8,22 +8,21 @@ phases:
       - aws --version
       - set -x
       - $(aws ecr get-login --region us-east-1 --no-include-email)
-      - REPOSITORY_URI=115717770171.dkr.ecr.us-east-1.amazonaws.com/node
-      #- aws ecr-public get-login-password  --region us-east-1  | docker login --username AWS --password-stdin public.ecr.aws/v8p9f0s1
-     
+      - REPOSITORY_URI=public.ecr.aws/l0i5y9n6/devtest
+      - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/l0i5y9n6
   build:
     commands:
       - echo Build started on `date`
       - echo building the docker images...
       - docker build -t node . 
-      - docker tag node:latest 115717770171.dkr.ecr.us-east-1.amazonaws.com/node:latest
+      - docker tag devtest:latest public.ecr.aws/l0i5y9n6/devtest:latest
      
   post_build:
     commands:
       - "echo Build completed on `date`"
       - "echo Pushing the Docker image..."
-      - docker push 115717770171.dkr.ecr.us-east-1.amazonaws.com/node:latest
-      - printf '[{"name":"node","imageUri":"%s"}]' 115717770171.dkr.ecr.us-east-1.amazonaws.com/node:latest > imagedefinitions.json
+      - docker push public.ecr.aws/l0i5y9n6/devtest:latest
+      - printf '[{"name":"devtest","imageUri":"%s"}]' public.ecr.aws/l0i5y9n6/devtest:latest > imagedefinitions.json
       - cat imagedefinitions.json 
       
 artifacts:
