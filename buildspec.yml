@@ -9,8 +9,8 @@ phases:
     commands:
       - "echo Build started on `date`"
       - "echo Building the Docker image..."
-      - docker build -t nodejsapp .
-      - docker tag nodejsapp:latest public.ecr.aws/v8p9f0s1/nodejsapp:latest
+      - docker build -tpublic.ecr.aws/v8p9f0s1/nodejsapp:latest .
+      #- docker tag nodejsapp:latest public.ecr.aws/v8p9f0s1/nodejsapp:latest
   post_build:
     commands:
       - "echo Build completed on `date`"
