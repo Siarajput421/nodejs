@@ -9,14 +9,14 @@ phases:
     commands:
       - "echo Build started on `date`"
       - "echo Building the Docker image..."
-      - docker build -tpublic.ecr.aws/v8p9f0s1/nodejsapp:latest .
+      - docker build -t public.ecr.aws/v8p9f0s1/node .
       #- docker tag nodejsapp:latest public.ecr.aws/v8p9f0s1/nodejsapp:latest
   post_build:
     commands:
       - "echo Build completed on `date`"
       - "echo Pushing the Docker image..."
-      - docker push public.ecr.aws/v8p9f0s1/nodejsapp:latest
-      - printf '[{"name":"node","imageUri":"%s"}]' public.ecr.aws/v8p9f0s1/nodejsapp:latest > imagedefinitions.json
+      - docker push public.ecr.aws/v8p9f0s1/node
+      - printf '[{"name":"node","imageUri":"%s"}]' public.ecr.aws/v8p9f0s1/node > imagedefinitions.json
       - cat imagedefinitions.json
 artifacts:
     files: imagedefinitions.json
