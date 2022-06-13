@@ -9,8 +9,8 @@ phases:
     commands:
       - "echo Build started on `date`"
       - "echo Building the Docker image..."
-      - docker build -t public.ecr.aws/v8p9f0s1/node .
-      #- docker tag node:latest public.ecr.aws/v8p9f0s1/node:latest
+      - docker build -t node .
+      - docker tag node:latest public.ecr.aws/v8p9f0s1/node:latest
   post_build:
     commands:
       - "echo Build completed on `date`"
