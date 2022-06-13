@@ -16,7 +16,7 @@ phases:
       - "echo Build completed on `date`"
       - "echo Pushing the Docker image..."
       - docker push public.ecr.aws/v8p9f0s1/node:latest
-      - printf '[{"name":"node","imageUri":"%s"}]' 318451290319.dkr.ecr.us-east-1.amazonaws.com/assign > imagedefinitions.json
+      - printf '[{"name":"node","imageUri":"%s"}]' public.ecr.aws/v8p9f0s1/node > imagedefinitions.json
       - cat imagedefinitions.json
 artifacts:
     files: imagedefinitions.json
