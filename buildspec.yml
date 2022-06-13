@@ -3,20 +3,20 @@ phases:
   pre_build:
     commands:
       #- $(aws ecr get-login --no-include-email --region us-east-1)
-      - REPOSITORY_URI=public.ecr.aws/v8p9f0s1/nodejsapp
-      - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/v8p9f0s1
+      - REPOSITORY_URI=318451290319.dkr.ecr.us-east-1.amazonaws.com/assign
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 318451290319.dkr.ecr.us-east-1.amazonaws.com
   build:
     commands:
       - "echo Build started on `date`"
       - "echo Building the Docker image..."
-      - docker build -t public.ecr.aws/v8p9f0s1/node .
+      - docker build -t 318451290319.dkr.ecr.us-east-1.amazonaws.com/assign .
       #- docker tag nodejsapp:latest public.ecr.aws/v8p9f0s1/nodejsapp:latest
   post_build:
     commands:
       - "echo Build completed on `date`"
       - "echo Pushing the Docker image..."
-      - docker push public.ecr.aws/v8p9f0s1/node
-      - printf '[{"name":"node","imageUri":"%s"}]' public.ecr.aws/v8p9f0s1/node > imagedefinitions.json
+      - docker push 318451290319.dkr.ecr.us-east-1.amazonaws.com/assign
+      - printf '[{"name":"node","imageUri":"%s"}]' 318451290319.dkr.ecr.us-east-1.amazonaws.com/assign > imagedefinitions.json
       - cat imagedefinitions.json
 artifacts:
     files: imagedefinitions.json
