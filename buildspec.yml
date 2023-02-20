@@ -3,21 +3,21 @@ phases:
   pre_build:
     commands:
       #- $(aws ecr get-login --no-include-email --region us-east-1)
-      - REPOSITORY_URI=public.ecr.aws/i8g4q7b2/repo
+      - echo Logging in to Amazon ECR...
       - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/i8g4q7b2
   build:
     commands:
-      - "echo Build started on `date`"
-      - "echo Building the Docker image..."
-      - docker build -t cloudformation .
-      - docker tag cloudformation:latest 784040140536.dkr.ecr.us-east-1.amazonaws.com/cloudformation:latest
+      - echo Build started on `date`
+      - echo Building the Docker image...          
+      - docker build -t repo .
+      - docker tag repo:latest public.ecr.aws/i8g4q7b2/repo:latest
   post_build:
     commands:
       - "echo Build completed on `date`"
       - "echo Pushing the Docker image..."
-      - docker push 784040140536.dkr.ecr.us-east-1.amazonaws.com/cloudformation:latest
-      - printf '[{"name":"cloudformation","imageUri":"784040140536.dkr.ecr.us-east-1.amazonaws.com/cloudformation:latest":"%s"}]' 784040140536.dkr.ecr.us-east-1.amazonaws.com/cloudformation > imagedefinitions.json
+      - docker push public.ecr.aws/i8g4q7b2/repo:latest
+      - printf '[{"name":"dev-container","imageUri":"public.ecr.aws/i8g4q7b2/repo:latest":"%s"}]' public.ecr.aws/i8g4q7b2/repo:latest > imagedefinitions.json
       
-      - cat imagedefinitions.json
+    
 artifacts:
     files: imagedefinitions.json
