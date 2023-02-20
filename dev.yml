@@ -68,7 +68,7 @@ Resources:
   MyS3Bucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: node_dev_env
+      BucketName: node-dev-env
 
   
 
