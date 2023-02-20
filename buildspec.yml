@@ -4,19 +4,19 @@ phases:
     commands:
       #- $(aws ecr get-login --no-include-email --region us-east-1)
       - echo Logging in to Amazon ECR...
-      - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/i8g4q7b2
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 784040140536.dkr.ecr.us-east-1.amazonaws.com
   build:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...          
-      - docker build -t repo .
-      - docker tag repo:latest public.ecr.aws/i8g4q7b2/repo:latest
+      - docker build -t repooo .
+      - docker tag repooo:latest 784040140536.dkr.ecr.us-east-1.amazonaws.com/repooo:latest
   post_build:
     commands:
       - "echo Build completed on `date`"
       - "echo Pushing the Docker image..."
-      - docker push public.ecr.aws/i8g4q7b2/repo:latest
-      - printf '[{"name":"dev-container","imageUri":"public.ecr.aws/i8g4q7b2/repo:latest":"%s"}]' public.ecr.aws/i8g4q7b2/repo:latest > imagedefinitions.json
+      - docker push 784040140536.dkr.ecr.us-east-1.amazonaws.com/repooo:latest
+      - printf '[{"name":"node-br","imageUri":"784040140536.dkr.ecr.us-east-1.amazonaws.com/repooo":"%s"}]' 784040140536.dkr.ecr.us-east-1.amazonaws.com/repooo > imagedefinitions.json
       
     
 artifacts:
